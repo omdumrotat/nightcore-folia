@@ -35,3 +35,15 @@ jobs:
       
     - name: Package
       run: mvn package -B -DskipTests
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nightcore-build-${{ github.sha }}
+        path: |
+          main/target/*.jar
+          bridge/target/*.jar
+          utils/target/*.jar
+          spigot/target/*.jar
+          paper/target/*.jar
+        retention-days: 30
